@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail_page</title>
+</head>
+<body style="background-color: #ffccc5">
+<div style="text-align:center">
+    <h4><a href="{% url 'product:homepage' %}" style="padding: 2%">Back to homepage</a>
+        <a href="{% url 'product:candles' %}" style="padding: 2%">Candles</a>
+        <a href="{% url 'product:diffusers' %}" style="padding: 2%">Diffuser</a>
+        <a href="{% url 'customer:customer_login' %}" style="padding: 2%">Login</a>
+        <a href="{% url 'customer:customer_logout' %}" style="padding: 2%">Logout</a>
+        {#        <a href="{% url 'cart:cart_products_view' %}" style="padding: 2%">Cart</a>#}
+    </h4>
+</div>
+<div style="text-align:center">
+    <ul style="list-style: none">
+        {% if product.image.url %}
+            <li><img src="{{ product.image.url }}" width="20%"></li>
+        {% endif %}
+
+        {% if product.name %}
+            <li><h1>{{ product.name }}</h1></li>
+        {% endif %}
+
+        {% if product.price %}
+            <li>{{ product.price }} UAH</li>
+        {% endif %}
+
+        {% if product.description %}
+            <li><p>{{ product.description }}</p></li>
+        {% endif %}
+
+        <li><p>May we send this item?
+            {% if product.in_stock %}
+                Yes
+            {% else %}
+                No
+            {% endif %}</p>
+            <h4><a href="{% url 'product:product_review' product.product_id %}">Write a review</a></h4>
+            <h4>
+                <a href="{% url 'product:Privat24' %}" style="padding: 1.5%">Buy with Privat24</a>
+                <a href="{% url 'product:Mono' %}" style="padding: 1.5%">Buy with Monobank</a>
+            </h4>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

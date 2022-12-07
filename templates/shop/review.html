@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-color: #ffccc5">
+<div style="text-align:center">
+    <h4><a href="{% url 'product:homepage' %}" style="padding: 2%">Back to homepage</a>
+        <a href="{% url 'product:candles' %}" style="padding: 2%">Candles</a>
+        <a href="{% url 'product:diffusers' %}" style="padding: 2%">Diffuser</a>
+        <a href="{% url 'customer:customer_login' %}" style="padding: 2%">Login</a>
+        <a href="{% url 'customer:customer_logout' %}" style="padding: 2%">Logout</a>
+    </h4>
+</div>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <br>
+        {% if field.name == 'text' or field.name == 'mark' %}
+            {{ field }}
+        {% else %}
+            {{ field.as_hidden }}
+        {% endif %}
+    {% endfor %}
+    <input type="submit" value="Submit">
+</body>
+</html>

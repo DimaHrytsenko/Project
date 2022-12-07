@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Candles_homepage</title>
+</head>
+<body style="background-color: #ffccc5">
+<div style="text-align:center">
+    <h4><a href="{% url 'product:homepage' %}" style="padding: 2%">Back to homepage</a>
+        <a href="{% url 'product:candles' %}" style="padding: 2%">Candles</a>
+        <a href="{% url 'product:diffusers' %}" style="padding: 2%">Diffuser</a>
+        <a href="{% url 'customer:customer_login' %}" style="padding: 2%">Login</a>
+        <a href="{% url 'customer:customer_logout' %}" style="padding: 2%">Logout</a>
+    </h4>
+</div>
+
+<div style="text-align:center">
+    <h1>Candles</h1>
+    <h5><a href="{% url 'product:candles' %}?filter=A-Z">A-Z</a></h5>
+    <h5><a href="{% url 'product:candles' %}?filter=Z-A">Z-A</a></h5>
+    {% for candle in candles %}
+        <hr>
+        <ul style="list-style: none">
+            <li><a href="{% url 'product:product_detail' candle.pk %}"><img src="{{ candle.image.url }}"
+                                                                            width="20%"></a></li>
+            <li><a href="{% url 'product:product_detail' candle.pk %}">{{ candle.name }}</a></li>
+            <li>{{ candle.price }} UAH</li>
+        </ul>
+    {% endfor %}
+    <hr>
+</div>
+</body>
+</html>

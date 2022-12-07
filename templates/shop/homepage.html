@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body style="background-color: #ffccc5">
+<div style="text-align:center">
+    <h4>
+        <a href="{% url 'product:candles' %}" style="padding: 2%">Candles</a>
+        <a href="{% url 'product:diffusers' %}" style="padding: 2%">Diffuser</a>
+        <a href="{% url 'customer:customer_login' %}" style="padding: 2%">Login</a>
+        <a href="{% url 'customer:customer_logout' %}" style="padding: 2%">Logout</a>
+    </h4>
+</div>
+<div style="text-align:center">
+    <h1>Homepage</h1>
+    {% for cat in categories %}
+        <ul style="list-style: none">
+            {% if cat.name == 'Candles' %}
+                <li><a href="{% url 'product:candles' %}"><img src="{{ cat.image.url }}" width="30%"></a></li>
+                <li><a href="{% url 'product:candles' %}">{{ cat.name }}</a></li>
+            {% elif cat.name == 'Diffuser' %}
+                <li><a href="{% url 'product:diffusers' %}"><img src="{{ cat.image.url }}" width="30%"></a></li>
+                <li><a href="{% url 'product:diffusers' %}">{{ cat.name }}</a></li>
+            {% endif %}
+        </ul>
+        <hr>
+    {% endfor %}
+</div>
+</body>
+</html>
